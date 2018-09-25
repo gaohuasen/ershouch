@@ -28,8 +28,8 @@ class CheHomeSpider(scrapy.Spider):
             url_detail = base + pattern3.findall(url_product)[0]
             # yield scrapy.Request(url_product,callback=self.parse_product)
             yield scrapy.Request(url_detail,callback=self.parse)
-        pattern3 = re.compile(r'id="CarSpecid" value="(\d+?)"')
-        for url in pattern3.findall(response.text)[0]:
+        pattern4 = re.compile(r'id="CarSpecid" value="(\d+?)"')
+        for url in pattern4.findall(response.text):
             url_info = 'https://cacheapi.che168.com/CarProduct/GetParam.ashx?specid=%d&_callback=configTitle'%int(url)
             yield scrapy.Request(url_detail,callback=self.parse_detail)
         

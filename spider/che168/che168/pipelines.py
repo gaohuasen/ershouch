@@ -10,14 +10,22 @@ class Che168Pipeline(object):
     def __init__(self):
         self.filename = open("淘车.txt","a",encoding="utf-8")
     def process_item(self, item, spider):
-        content = json.dumps(dict(item),ensure_ascii=False)
-        print(content)
-        for key,value in json.loads(content,encoding='utf-8').items():
-            if not value:
-                self.filename.write('Null,')
-            else:
-                self.filename.write(value[0]+',')
-        self.filename.write('\n')
+        if type(item) is list: 
+            content = json.dumps(dict(item),ensure_ascii=False)
+            print(content)
+            for key,value in json.loads(content,encoding='utf-8').items():
+                if not value:
+                    self.filename.write('Null,')
+                else:
+                    self.filename.write(value[0]+',')
+            self.filename.write('\n')
+        elif type(item) is str:
+            for key,value in item:
+                if not value:
+                    self.filename.write('null,')
+                else:
+                    self.filename.write(value+',')
+                self.filename.write('\n')
 
         return item
     def close_spider(self,spider):
