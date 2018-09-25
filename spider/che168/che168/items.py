@@ -14,6 +14,7 @@ class Che168Item(scrapy.Item):
     car_brand = scrapy.Field()    #车型
     car_version = scrapy.Field()  #车系
     car_price = scrapy.Field()
+    car_origin_price = scrapy.Field()
     car_kind = scrapy.Field()    #微型车，小型车，SUV等等
     car_body = scrapy.Field()
     car_trunk = scrapy.Field()    #后备箱容积
